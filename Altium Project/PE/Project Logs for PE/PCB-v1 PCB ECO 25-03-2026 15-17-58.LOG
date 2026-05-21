@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=+5 Pin=F1-1
+Removed Pin From Net: NetName=+5 Pin=J1-A4
+Removed Pin From Net: NetName=+5 Pin=J1-A9
+Removed Pin From Net: NetName=+5 Pin=J1-B4
+Removed Pin From Net: NetName=+5 Pin=J1-B9
+Added Pin To Net: NetName=+5.Voor fuse Pin=F1-1
+Added Pin To Net: NetName=+5.Voor fuse Pin=J1-A4
+Added Pin To Net: NetName=+5.Voor fuse Pin=J1-A9
+Added Pin To Net: NetName=+5.Voor fuse Pin=J1-B4
+Added Pin To Net: NetName=+5.Voor fuse Pin=J1-B9
+Added Net: Name=+5.Voor fuse
+Added Rule: Name=Schematic Supply Nets_3

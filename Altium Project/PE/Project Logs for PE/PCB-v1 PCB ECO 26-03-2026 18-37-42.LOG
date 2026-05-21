@@ -1,0 +1,6 @@
+Change Component Designator: OldDesignator=ANT NewDesignator=ANT1
+Change Component Designator: OldDesignator=Crystal NewDesignator=Crystal1
+Change Component Designator: OldDesignator=Flash NewDesignator=Flash1
+Added Pin To Net: NetName=GND Pin=ANT1-2
+Added Pin To Net: NetName=GND Pin=C15-1
+Added Pin To Net: NetName=GND Pin=C16-1

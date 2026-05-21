@@ -1,0 +1,532 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD26\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">26/03/2026</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">23:19:03</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:00</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc" class="file"><acronym title="C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc">C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">4</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">44</td></tr>
+</table>
+</td>
+</table><a name="IDJ2KOOQSDCLICGA1KZWEDYGVURMN0KDW10RNVF2JYTA2KF3X4LC1O"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDENIPY4GQEHNOG52ZFMGATGLOCG32WZHNX0D4RIHPOW4GZ3MGCVPH">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</a></td>
+<td class="column2">4</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">4</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDDXOLYTYCDQW1HNWEBGEDVQ4K5HUSLDAH1H2OZOOGUY3UCUI5XZMC">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDF5YG53NXFPHDQTBGF1L1PNQUNB2ONVB23RXVEGKKJCUBBGP1X2J">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUOLDEMSWR035O55F2PNKZITPNLUAZVI33NDOKJOEZHUMGWUW4JPH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAOGHIJYF3FMDMGEHJHGI0NUKKSPWM2D222WOWIZNGYL5RWVF4KM">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHRAQ0U1ODVLDIQPGRLTYXIXUONFF3JKDIQPZGICAF4LSET15PBHL">Width Constraint (Min=0.305mm) (Max=25.4mm) (Preferred=0.305mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID03KV45IVBJULH5WZDCDJGZQKAMTUVYKXYZB0H0OFBXTWE3ML241H">Width Constraint (Min=0.127mm) (Max=25.4mm) (Preferred=0.127mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJRTHSY3R2ONEFUEEXGWU00SHFKJ4XHT203QBWBMYSNJUSC1V4AQI">Width Constraint (Min=0.508mm) (Max=25.4mm) (Preferred=0.508mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGY22GOGVQ4K3HCCZSCXN1YZWYI0GLJYVQMTMHFLXIUBU2LJGQKYO">Width Constraint (Min=0.254mm) (Max=25.4mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTKQ4DU1GA5MFD4DFVDQL34UX5FIAYTMPVPRCTJLYJOXKOO1IV3EB">Width Constraint (Min=0.152mm) (Max=25.4mm) (Preferred=0.152mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDZG0X54REKYYIKZL23OEYW00F2PBLANWME1TW5JHE2B25XMEASQIL">Routing Topology Rule(Topology=Shortest) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDML1PIYFO24DYMEU0DORSI2E3TFGLEAMZPF5KJ3KIJHNNBPGQI2T">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.127mm) (Air Gap=0.127mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAHOZ1HCCRXJUO12CEYU0GU01UDOGF4ROTZ3SGOCDYSJN4OGVNRTJ">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZKOJI3EKTIN35PG0EWI1IPSUOVJPPVBH5EU0RFELOT1CAZLZ2WD">Minimum Annular Ring (Minimum=0.152mm) (All)</a></td>
+<td class="column2">32</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYGTWLGONMGM3MLMHYKVDCOYGZM1C2P5UTVYOTAJDUX5MYN4CNPQH">Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDBMAJTRBULCJENNNBBNGLXMBVXPPIVR2RUATDRKN4PJUSD0AONWLK">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTWW3JWKCXDYUNZLVR41MIIQBG2SQB0OYJEJ4EFZ0UBEPXC13WYK">Minimum Solder Mask Sliver (Gap=0.152mm) (All),(All)</a></td>
+<td class="column2">3</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDN5HNRE32KYTYC5BS0FOOV1LS3GJPF43NE0JIEOJFMPEHM25HST5B">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKUGWPRRVIVA0F1CVPAJ304CATOY3JSJQAVYCILGOHGDJ0OUNPTAI">Silk to Silk (Clearance=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID5V21EIZG4BV2MBTM43FKWO5IVPOIAYS5GUAXQGLXXCLXLEJENDZI">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3IH5CNS2Z5UGOMITROADNZMMNKHZZY25Q2B0VGBHXN14RPFW1HQP">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOFDUHSVYDR0BDSSQI24KKOGRFM3T2IIFFT2FQJDEA2B5RLOQF14H">Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">44</td>
+</tr>
+</table><br><a name="IDOGCYV2IEXCASCOGUJIDKTQQZFDWXDVIYVXDVIQIEJLUCRTFT3PKH"><h2>Warnings</h2></a><a name="IDENIPY4GQEHNOG52ZFMGATGLOCG32WZHNX0D4RIHPOW4GZ3MGCVPH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="warning">Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: NONET_L01_P000 On Top Layer</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: NONET_L02_P001 On Bottom Layer</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1">Polygon named: NONET_L01_P000 On Top Layer</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1">Polygon named: NONET_L02_P001 On Bottom Layer</td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDUOLDEMSWR035O55F2PNKZITPNLUAZVI33NDOKJOEZHUMGWUW4JPH"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.961mil|Location2.X=2110.268mil|Location1.Y=1749.968mil|Location2.Y=1939.008mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.961mil|Location2.X=2110.268mil|Location1.Y=1749.968mil|Location2.Y=1939.008mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C9-1(27.6mm,19.5mm) on Top Layer And Pad C13-1(27.6mm,23.4mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.968mil|Location2.X=2210.661mil|Location1.Y=2098.394mil|Location2.Y=2199.835mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2124.968mil|Location2.X=2210.661mil|Location1.Y=2098.394mil|Location2.Y=2199.835mil|Absolute=True">Un-Routed Net Constraint: Net NetC20_1 Between Pad Crystal1-3(29mm,30.1mm) on Top Layer And Pad C20-1(30.3mm,28.5mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.803mil|Location2.X=2858.299mil|Location1.Y=2492.095mil|Location2.Y=2608.299mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2822.803mil|Location2.X=2858.299mil|Location1.Y=2492.095mil|Location2.Y=2608.299mil|Absolute=True">Un-Routed Net Constraint: Net NetJ1_B5 Between Pad R8-2(46.75mm,38.5mm) on Top Layer And Pad R7-2(46.75mm,40.25mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDAOGHIJYF3FMDMGEHJHGI0NUKKSPWM2D222WOWIZNGYL5RWVF4KM"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Modified Polygon (Allow modified: No), (Allow shelved: No)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000mil|Location2.X=2968.504mil|Location1.Y=1000mil|Location2.Y=2968.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000mil|Location2.X=2968.504mil|Location1.Y=1000mil|Location2.Y=2968.504mil|Absolute=True">Modified Polygon: Polygon Shelved  (NONET_L01_P000) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000mil|Location2.X=2968.504mil|Location1.Y=1000mil|Location2.Y=2968.504mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000mil|Location2.X=2968.504mil|Location1.Y=1000mil|Location2.Y=2968.504mil|Absolute=True">Modified Polygon: Polygon Shelved  (NONET_L02_P001) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDZKOJI3EKTIN35PG0EWI1IPSUOVJPPVBH5EU0RFELOT1CAZLZ2WD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Annular Ring (Minimum=0.152mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.461mil|Location2.X=2735.711mil|Location1.Y=2098.737mil|Location2.Y=2105.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.461mil|Location2.X=2735.711mil|Location1.Y=2098.737mil|Location2.Y=2105.987mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Pad J1-1(45.12mm,28mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.461mil|Location2.X=2735.711mil|Location1.Y=2439.288mil|Location2.Y=2446.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2728.461mil|Location2.X=2735.711mil|Location1.Y=2439.288mil|Location2.Y=2446.538mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Pad J1-2(45.12mm,36.65mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.312mil|Location2.X=2882.562mil|Location1.Y=2098.737mil|Location2.Y=2105.987mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.312mil|Location2.X=2882.562mil|Location1.Y=2098.737mil|Location2.Y=2105.987mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Pad J1-3(48.5mm,28mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.312mil|Location2.X=2882.562mil|Location1.Y=2439.288mil|Location2.Y=2446.538mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2875.312mil|Location2.X=2882.562mil|Location1.Y=2439.288mil|Location2.Y=2446.538mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Pad J1-4(48.5mm,36.65mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2162.221mil|Location2.Y=2169.471mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2162.221mil|Location2.Y=2169.471mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A1(44.14mm,29.35mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2396.473mil|Location2.Y=2403.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2396.473mil|Location2.Y=2403.723mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A12(44.14mm,35.3mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2195.686mil|Location2.Y=2202.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2195.686mil|Location2.Y=2202.936mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A4(44.14mm,30.2mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2229.151mil|Location2.Y=2236.401mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2229.151mil|Location2.Y=2236.401mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A5(44.14mm,31.05mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2262.615mil|Location2.Y=2269.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2262.615mil|Location2.Y=2269.865mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A6(44.14mm,31.9mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2296.08mil|Location2.Y=2303.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2296.08mil|Location2.Y=2303.33mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A7(44.14mm,32.75mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2329.544mil|Location2.Y=2336.794mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2329.544mil|Location2.Y=2336.794mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A8(44.14mm,33.6mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2363.009mil|Location2.Y=2370.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2734.17mil|Location2.X=2741.42mil|Location1.Y=2363.009mil|Location2.Y=2370.259mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-A9(44.14mm,34.45mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2396.473mil|Location2.Y=2403.723mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2396.473mil|Location2.Y=2403.723mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B1(45.49mm,35.3mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2162.221mil|Location2.Y=2169.471mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2162.221mil|Location2.Y=2169.471mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B12(45.49mm,29.35mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2363.009mil|Location2.Y=2370.259mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2363.009mil|Location2.Y=2370.259mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B4(45.49mm,34.45mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2329.544mil|Location2.Y=2336.794mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2329.544mil|Location2.Y=2336.794mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B5(45.49mm,33.6mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2296.08mil|Location2.Y=2303.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2296.08mil|Location2.Y=2303.33mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B6(45.49mm,32.75mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2262.615mil|Location2.Y=2269.865mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2262.615mil|Location2.Y=2269.865mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B7(45.49mm,31.9mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2229.151mil|Location2.Y=2236.401mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2229.151mil|Location2.Y=2236.401mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B8(45.49mm,31.05mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2195.686mil|Location2.Y=2202.936mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2787.32mil|Location2.X=2794.57mil|Location1.Y=2195.686mil|Location2.Y=2202.936mil|Absolute=True">Minimum Annular Ring: (0.125mm &lt; 0.152mm) Pad J1-B9(45.49mm,30.2mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1957.005mil|Location2.X=1964.255mil|Location1.Y=1717.832mil|Location2.Y=1725.082mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1957.005mil|Location2.X=1964.255mil|Location1.Y=1717.832mil|Location2.Y=1725.082mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (24.4mm,18.1mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1957.005mil|Location2.X=1964.255mil|Location1.Y=2261.139mil|Location2.Y=2268.389mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1957.005mil|Location2.X=1964.255mil|Location1.Y=2261.139mil|Location2.Y=2268.389mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (24.4mm,31.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1960.942mil|Location2.X=1968.192mil|Location1.Y=1650.902mil|Location2.Y=1658.152mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1960.942mil|Location2.X=1968.192mil|Location1.Y=1650.902mil|Location2.Y=1658.152mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (24.5mm,16.4mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2012.123mil|Location2.X=2019.373mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2012.123mil|Location2.X=2019.373mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (25.8mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2130.233mil|Location2.X=2137.483mil|Location1.Y=1930.43mil|Location2.Y=1937.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2130.233mil|Location2.X=2137.483mil|Location1.Y=1930.43mil|Location2.Y=1937.68mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (28.8mm,23.5mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2299.525mil|Location2.X=2306.775mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2299.525mil|Location2.X=2306.775mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (33.1mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2366.454mil|Location2.X=2373.704mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2366.454mil|Location2.X=2373.704mil|Location1.Y=2024.918mil|Location2.Y=2032.168mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (34.8mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.383mil|Location2.X=2440.633mil|Location1.Y=2296.572mil|Location2.Y=2303.822mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2433.383mil|Location2.X=2440.633mil|Location1.Y=2296.572mil|Location2.Y=2303.822mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (36.5mm,32.8mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.131mil|Location2.X=2456.381mil|Location1.Y=1572.162mil|Location2.Y=1579.412mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.131mil|Location2.X=2456.381mil|Location1.Y=1572.162mil|Location2.Y=1579.412mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (36.9mm,14.4mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2527.871mil|Location2.X=2535.121mil|Location1.Y=2430.43mil|Location2.Y=2437.68mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2527.871mil|Location2.X=2535.121mil|Location1.Y=2430.43mil|Location2.Y=2437.68mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (38.9mm,36.2mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2547.556mil|Location2.X=2554.806mil|Location1.Y=1749.328mil|Location2.Y=1756.578mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2547.556mil|Location2.X=2554.806mil|Location1.Y=1749.328mil|Location2.Y=1756.578mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (39.4mm,18.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2807.399mil|Location2.X=2814.649mil|Location1.Y=1792.635mil|Location2.Y=1799.885mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2807.399mil|Location2.X=2814.649mil|Location1.Y=1792.635mil|Location2.Y=1799.885mil|Absolute=True">Minimum Annular Ring: (0.15mm &lt; 0.152mm) Via (46mm,20mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDTWW3JWKCXDYUNZLVR41MIIQBG2SQB0OYJEJ4EFZ0UBEPXC13WYK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.152mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1937.288mil|Location2.X=1944.538mil|Location1.Y=2069.013mil|Location2.Y=2076.263mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1937.288mil|Location2.X=1944.538mil|Location1.Y=2069.013mil|Location2.Y=2076.263mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.138mm &lt; 0.152mm) Between Pad D1-1(24.2mm,26.6mm) on Top Layer And Pad D1-2(24.2mm,27.715mm) on Top Layer [Top Solder] Mask Sliver [0.138mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2310.843mil|Location2.X=2318.093mil|Location1.Y=1496.407mil|Location2.Y=1503.657mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2310.843mil|Location2.X=2318.093mil|Location1.Y=1496.407mil|Location2.Y=1503.657mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.138mm &lt; 0.152mm) Between Pad D2-1(32.742mm,12.4mm) on Top Layer And Pad D2-2(33.857mm,12.4mm) on Top Layer [Top Solder] Mask Sliver [0.138mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1977.674mil|Location2.X=1984.924mil|Location1.Y=1642.044mil|Location2.Y=1649.294mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1977.674mil|Location2.X=1984.924mil|Location1.Y=1642.044mil|Location2.Y=1649.294mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.148mm &lt; 0.152mm) Between Pad R5-1(25.45mm,16.4mm) on Top Layer And Via (24.5mm,16.4mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.148mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDN5HNRE32KYTYC5BS0FOOV1LS3GJPF43NE0JIEOJFMPEHM25HST5B"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2655.663mil|Location2.X=2661.913mil|Location1.Y=2467.349mil|Location2.Y=2473.599mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2655.663mil|Location2.X=2661.913mil|Location1.Y=2467.349mil|Location2.Y=2473.599mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.1mm &lt; 0.127mm) Between Pad C3-1(42.2mm,36.9mm) on Top Layer And Text "C3" (41.383mm,37.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2575.262mil|Location2.X=2579.595mil|Location1.Y=2348.881mil|Location2.Y=2353.214mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2575.262mil|Location2.X=2579.595mil|Location1.Y=2348.881mil|Location2.Y=2353.214mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.127mm) Between Pad F1-1(40.25mm,34.6mm) on Top Layer And Text "C2" (39.733mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID3IH5CNS2Z5UGOMITROADNZMMNKHZZY25Q2B0VGBHXN14RPFW1HQP"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2962.299mil|Location2.X=2971.423mil|Location1.Y=2595.829mil|Location2.Y=2604.952mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2962.299mil|Location2.X=2971.423mil|Location1.Y=2595.829mil|Location2.Y=2604.952mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.083mm &lt; 0.2mm) Between Board Edge And Text "R7" (48.983mm,40.05mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.331mil|Location2.X=2969.455mil|Location1.Y=2524.962mil|Location2.Y=2534.086mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.331mil|Location2.X=2969.455mil|Location1.Y=2524.962mil|Location2.Y=2534.086mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.183mm &lt; 0.2mm) Between Board Edge And Text "R8" (48.883mm,38.25mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

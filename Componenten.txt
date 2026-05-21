@@ -1,0 +1,89 @@
+
+
+
+
+
+Condensatoren:
+	- 3 keer 10 µF
+	- 3 keer 1 µF
+	- 5 keer 100 nF
+	- 2 keer 12 pF
+
+Spoelen:
+	- 2 nH
+
+
+
+WisselComponenten Antenne:
+	Series inductors (0402):
+		- 0 Ω, 0.8 nH, 1.0 nH, 1.5 nH, 2.2 nH, 3.3 nH
+
+	Shunt capacitors (0402, C0G/NP0):
+		- DNP, 0.5 pF, 0.8 pF, 1.0 pF, 1.2 pF, 1.5 pF, 2.2 pF
+
+
+Lars Marie: 21.9 + 4.4 tax
+Ylias Tibo: 29.96 + 6 tax
+
+
+
+
+
+
+PCB:
+	- Volotage regulator alles zo dicht mogelijk op component
+
+
+
+
+Basket:
+	-- ESP32-S3 // ESP32-S3
+	- 40 MHz crystal // ECS-400-8-47B2-CKM-TR
+	- USB to UART bridge // CP2102N-A02-GQFN24R
+	- USB-C connector // USB4085-GF-A
+	- Altium nummer // USB4145-03-0230-C
+
+	- 128 Mbit SPI NOR Flash // AT25QF128A-MHB-T
+
+	- antenne // RFANT5220110A0T
+
+	- 453k ohm // RN73C1J453KBTD
+	- 100k ohm // PCF-W0603LF-03-1003-B
+	-- 499 ohm // MCT06030E4990BP500
+	- 0 ohm // CRCW06030000Z0EI
+	- 10k ohm // CPF0603B10KE
+	- 5.1k ohm // RR0816P-512-D
+	- 10k ohm // CR0603AFX-1002EAS
+	- 2.2k ohm // CRCW06032K20JNEBC
+	
+	- 3.3V ESD diode Vdd33 // CSPSBULC3V3P6
+	- 6V ESD diode antenne // 8231606A
+	- 5V TVS diode // SMF5.0A
+
+	- 0.5A resettable fuse // 0603L050SLYR
+
+	- 1 µF Condensator // CC0603KRX7R6BB105
+	- 100 nF Condensator // CC0603KRX7R8BB104
+	- 10 pF Condensator // 06033U100JAT2A
+	- 4.7 µF Condensator // 06033D475KAT2A
+	- 22 µF Condensator // KGM15CR51C226MT
+	- 10 µF Condensator // ZRB18AR61E106KE01L
+	- 1 µF Condensator // CC0603KRX5R8BB105
+	- 100 pF of 0.1 µF Condensator // 0603X104K250CT
+	- 12 pF Condesator // 06033A120FAT2A
+	- 1 pF Condensator // 06033A1R0BAT2A
+
+
+	- 1008 1 µH power inductor // MLP2520H1R0MT0S1
+	- 0402 2.0 nH inductor // MLG1005S2N0BTD25
+	- 0402 1.5 nH inductor // MHQ1005P1N5BT000
+	- 0402 24 nH inductor // 36501J24NJTDG
+	
+	- tactile switch // FSM4JSMAATR
+	- status LED // KRDELPS1.22-UIVG-46-H3Q4-XX
+	- TLV62569APDRLR // Buck converter // Voor de omvorming van 5v van dieen usb-c naar 3.3v
+
+
+Extra componenten:
+	- 
+	- 

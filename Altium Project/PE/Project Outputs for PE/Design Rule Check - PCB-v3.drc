@@ -1,0 +1,102 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v3.PcbDoc
+Date     : 30/03/2026
+Time     : 14:24:45
+
+Processing Rule : Clearance Constraint (Gap=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.305mm) (Max=25.4mm) (Preferred=0.305mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.127mm) (Max=25.4mm) (Preferred=0.127mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.508mm) (Max=25.4mm) (Preferred=0.508mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.254mm) (Max=25.4mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.152mm) (Max=25.4mm) (Preferred=0.152mm) (All)
+Rule Violations :0
+
+Processing Rule : Routing Topology Rule(Topology=Shortest) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.127mm) (Air Gap=0.127mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))
+Rule Violations :0
+
+Processing Rule : Minimum Annular Ring (Minimum=0.152mm) (All)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A1(44.075mm,29.325mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A12(44.075mm,35.275mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A4(44.075mm,30.175mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A5(44.075mm,31.025mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A6(44.075mm,31.875mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A7(44.075mm,32.725mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A8(44.075mm,33.575mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-A9(44.075mm,34.425mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B1(45.425mm,35.275mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B12(45.425mm,29.325mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B4(45.425mm,34.425mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B5(45.425mm,33.575mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B6(45.425mm,32.725mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B7(45.425mm,31.875mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B8(45.425mm,31.025mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-B9(45.425mm,30.175mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+Rule Violations :16
+
+Processing Rule : Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.152mm) (All),(All)
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A1(44.075mm,29.325mm) on Multi-Layer And Pad J1-A4(44.075mm,30.175mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A12(44.075mm,35.275mm) on Multi-Layer And Pad J1-A9(44.075mm,34.425mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A4(44.075mm,30.175mm) on Multi-Layer And Pad J1-A5(44.075mm,31.025mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A5(44.075mm,31.025mm) on Multi-Layer And Pad J1-A6(44.075mm,31.875mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A6(44.075mm,31.875mm) on Multi-Layer And Pad J1-A7(44.075mm,32.725mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A7(44.075mm,32.725mm) on Multi-Layer And Pad J1-A8(44.075mm,33.575mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-A8(44.075mm,33.575mm) on Multi-Layer And Pad J1-A9(44.075mm,34.425mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B1(45.425mm,35.275mm) on Multi-Layer And Pad J1-B4(45.425mm,34.425mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B12(45.425mm,29.325mm) on Multi-Layer And Pad J1-B9(45.425mm,30.175mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B4(45.425mm,34.425mm) on Multi-Layer And Pad J1-B5(45.425mm,33.575mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B5(45.425mm,33.575mm) on Multi-Layer And Pad J1-B6(45.425mm,32.725mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B6(45.425mm,32.725mm) on Multi-Layer And Pad J1-B7(45.425mm,31.875mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B7(45.425mm,31.875mm) on Multi-Layer And Pad J1-B8(45.425mm,31.025mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.15mm < 0.152mm) Between Pad J1-B8(45.425mm,31.025mm) on Multi-Layer And Pad J1-B9(45.425mm,30.175mm) on Multi-Layer [Top Solder] Mask Sliver [0.15mm] / [Bottom Solder] Mask Sliver [0.15mm]
+Rule Violations :14
+
+Processing Rule : Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Board Clearance Constraint (Gap=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 30
+Waived Violations : 0
+Time Elapsed        : 00:00:00

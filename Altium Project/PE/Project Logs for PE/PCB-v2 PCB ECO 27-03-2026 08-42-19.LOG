@@ -1,0 +1,12 @@
+Added Component: Designator=D1(LED // KRDELPS1.22-UIVG-46-H3Q4-XX)
+Added Component: Designator=D2(LED // KRDELPS1.22-UIVG-46-H3Q4-XX)
+Added Component: Designator=U1(CONVERTOR // TLV62569APDRLR)
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Pin To Net: NetName=GND Pin=D2-2
+Added Pin To Net: NetName=NetR1_2 Pin=U1-1
+Added Pin To Net: NetName=GND Pin=U1-2
+Added Pin To Net: NetName=+5V Pin=U1-3
+Added Pin To Net: NetName=NetL1_1 Pin=U1-4
+Added Pin To Net: NetName=+5V Pin=U1-5

@@ -1,0 +1,122 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\toond\OneDrive - Thomas More\PE\Altium Project\PE\PCB-v1.PcbDoc
+Date     : 26/03/2026
+Time     : 23:19:03
+
+WARNING: Design contains shelved or modified (but not repoured) polygons. The result of DRC is not correct. Recommended to restore/repour all polygons and proceed with DRC again
+   Polygon named: NONET_L01_P000 On Top Layer
+   Polygon named: NONET_L02_P001 On Bottom Layer
+   Polygon named: NONET_L01_P000 On Top Layer
+   Polygon named: NONET_L02_P001 On Bottom Layer
+
+Processing Rule : Clearance Constraint (Gap=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+   Violation between Un-Routed Net Constraint: Net GND Between Pad C9-1(27.6mm,19.5mm) on Top Layer And Pad C13-1(27.6mm,23.4mm) on Top Layer 
+   Violation between Un-Routed Net Constraint: Net NetC20_1 Between Pad Crystal1-3(29mm,30.1mm) on Top Layer And Pad C20-1(30.3mm,28.5mm) on Top Layer 
+   Violation between Un-Routed Net Constraint: Net NetJ1_B5 Between Pad R8-2(46.75mm,38.5mm) on Top Layer And Pad R7-2(46.75mm,40.25mm) on Top Layer 
+Rule Violations :3
+
+Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
+   Violation between Modified Polygon: Polygon Shelved  (NONET_L01_P000) on Top Layer 
+   Violation between Modified Polygon: Polygon Shelved  (NONET_L02_P001) on Bottom Layer 
+Rule Violations :2
+
+Processing Rule : Width Constraint (Min=0.305mm) (Max=25.4mm) (Preferred=0.305mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.127mm) (Max=25.4mm) (Preferred=0.127mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.508mm) (Max=25.4mm) (Preferred=0.508mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.254mm) (Max=25.4mm) (Preferred=0.254mm) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=0.152mm) (Max=25.4mm) (Preferred=0.152mm) (All)
+Rule Violations :0
+
+Processing Rule : Routing Topology Rule(Topology=Shortest) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.127mm) (Air Gap=0.127mm) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (InPadClass('PowerPads'))
+Rule Violations :0
+
+Processing Rule : Minimum Annular Ring (Minimum=0.152mm) (All)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-1(45.12mm,28mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-2(45.12mm,36.65mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-3(48.5mm,28mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Pad J1-4(48.5mm,36.65mm) on Multi-Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A1(44.14mm,29.35mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A12(44.14mm,35.3mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A4(44.14mm,30.2mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A5(44.14mm,31.05mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A6(44.14mm,31.9mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A7(44.14mm,32.75mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A8(44.14mm,33.6mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-A9(44.14mm,34.45mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B1(45.49mm,35.3mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B12(45.49mm,29.35mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B4(45.49mm,34.45mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B5(45.49mm,33.6mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B6(45.49mm,32.75mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B7(45.49mm,31.9mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B8(45.49mm,31.05mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.125mm < 0.152mm) Pad J1-B9(45.49mm,30.2mm) on Multi-Layer (Annular Ring=0.125mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (24.4mm,18.1mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (24.4mm,31.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (24.5mm,16.4mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (25.8mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (28.8mm,23.5mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (33.1mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (34.8mm,25.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (36.5mm,32.8mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (36.9mm,14.4mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (38.9mm,36.2mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (39.4mm,18.9mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+   Violation between Minimum Annular Ring: (0.15mm < 0.152mm) Via (46mm,20mm) from Top Layer to Bottom Layer (Annular Ring=0.15mm) On (Top Layer)
+Rule Violations :32
+
+Processing Rule : Hole Size Constraint (Min=0.3mm) (Max=6.3mm) (All)
+Rule Violations :0
+
+Processing Rule : Hole To Hole Clearance (Gap=0.254mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=0.152mm) (All),(All)
+   Violation between Minimum Solder Mask Sliver Constraint: (0.138mm < 0.152mm) Between Pad D1-1(24.2mm,26.6mm) on Top Layer And Pad D1-2(24.2mm,27.715mm) on Top Layer [Top Solder] Mask Sliver [0.138mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.138mm < 0.152mm) Between Pad D2-1(32.742mm,12.4mm) on Top Layer And Pad D2-2(33.857mm,12.4mm) on Top Layer [Top Solder] Mask Sliver [0.138mm]
+   Violation between Minimum Solder Mask Sliver Constraint: (0.148mm < 0.152mm) Between Pad R5-1(25.45mm,16.4mm) on Top Layer And Via (24.5mm,16.4mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.148mm]
+Rule Violations :3
+
+Processing Rule : Silk To Solder Mask (Clearance=0.127mm) (IsPad),(All)
+   Violation between Silk To Solder Mask Clearance Constraint: (0.1mm < 0.127mm) Between Pad C3-1(42.2mm,36.9mm) on Top Layer And Text "C3" (41.383mm,37.45mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.1mm]
+   Violation between Silk To Solder Mask Clearance Constraint: (Collision < 0.127mm) Between Pad F1-1(40.25mm,34.6mm) on Top Layer And Text "C2" (39.733mm,33.9mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]
+Rule Violations :2
+
+Processing Rule : Silk to Silk (Clearance=0.127mm) (All),(All)
+Rule Violations :0
+
+Processing Rule : Net Antennae (Tolerance=0mm) (All)
+Rule Violations :0
+
+Processing Rule : Board Clearance Constraint (Gap=0mm) (All)
+   Violation between Board Outline Clearance(Outline Edge): (0.083mm < 0.2mm) Between Board Edge And Text "R7" (48.983mm,40.05mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (0.183mm < 0.2mm) Between Board Edge And Text "R8" (48.883mm,38.25mm) on Top Overlay 
+Rule Violations :2
+
+Processing Rule : Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)
+Rule Violations :0
+
+
+Violations Detected : 44
+Waived Violations : 0
+Time Elapsed        : 00:00:00

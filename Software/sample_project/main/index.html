@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ESP32 Control</title>
+  <style>
+    :root {
+      --bg:      #0d0d0d;
+      --card:    #161616;
+      --border:  #2a2a2a;
+      --accent:  #e8c547;
+      --text:    #f0ece0;
+      --muted:   #888;
+      --on:      #4caf50;
+      --off:     #e05c5c;
+      --font:    'Courier New', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+    h1 {
+      font-size: 1.4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: 2px;
+      margin-bottom: 28px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card h2 {
+      font-size: .8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+    }
+    button {
+      font-family: var(--font);
+      font-size: .85rem;
+      padding: 10px 20px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      cursor: pointer;
+      background: var(--card);
+      color: var(--text);
+      letter-spacing: 1px;
+      transition: all .15s;
+    }
+    button:hover       { border-color: var(--accent); color: var(--accent); }
+    button.on          { border-color: var(--on);  color: var(--on);  }
+    button.off         { border-color: var(--off); color: var(--off); }
+    button.stop        { border-color: var(--off); color: var(--off); }
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    input[type=number],
+    input[type=time],
+    select {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 9px 12px;
+      font-size: .85rem;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--accent); }
+
+    /* klok */
+    .clock {
+      font-size: 2.2rem;
+      letter-spacing: 6px;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-weight: bold;
+    }
+    .date  { color: var(--muted); font-size: .8rem; letter-spacing: 2px; margin-bottom: 16px; }
+    .sync  { font-size: .72rem; color: var(--muted); }
+    .sync.ok { color: var(--on); }
+
+    /* tabel */
+    table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-weight: normal;
+      letter-spacing: 2px;
+      font-size: .72rem;
+      padding: 6px 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    td { padding: 8px 4px; border-bottom: 1px solid #1e1e1e; vertical-align: middle; }
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 2px;
+      font-size: .72rem;
+      letter-spacing: 1px;
+    }
+    .badge.on  { background: #1a3a1a; color: var(--on);  border: 1px solid var(--on);  }
+    .badge.off { background: #3a1a1a; color: var(--off); border: 1px solid var(--off); }
+    .del {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px 8px;
+      font-size: .8rem;
+    }
+    .del:hover { color: var(--off); }
+    .toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 3px 10px;
+      font-size: .72rem;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .toggle.active { border-color: var(--accent); color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <h1>&#9679; ESP32</h1>
+  <div class="sub">SHELLY CONTROLLER &mdash; LOCAL NETWORK</div>
+
+  <!-- Klok -->
+  <div class="card">
+    <h2>&#128336; Huidige Tijd</h2>
+    <div class="clock" id="clk">--:--:--</div>
+    <div class="date"  id="dat">laden...</div>
+    <div class="sync"  id="sync">&#9675; Tijdssync: controleren...</div>
+  </div>
+
+  <!-- Directe bediening -->
+  <div class="card">
+    <h2>&#9889; Directe Bediening</h2>
+    <div class="row">
+      <button class="on"  onclick="fetch('/on')">&#9679; AAN</button>
+      <button class="off" onclick="fetch('/off')">&#9675; UIT</button>
+    </div>
+  </div>
+
+  <!-- Sequentie -->
+  <div class="card">
+    <h2>&#9654; Sequentie</h2>
+    <div class="row">
+      <input id="cnt" type="number" value="5" min="1" style="width:72px">
+      <span style="color:var(--muted);font-size:.8rem">x</span>
+      <input id="dly" type="number" value="2" min="1" style="width:72px">
+      <span style="color:var(--muted);font-size:.8rem">sec aan/uit</span>
+      <button onclick="startSeq()">START</button>
+      <button class="stop" onclick="fetch('/stop')">STOP</button>
+    </div>
+  </div>
+
+  <!-- Tijdschema's -->
+  <div class="card">
+    <h2>&#9201; Tijdschema's</h2>
+    <div class="row">
+      <input type="time" id="stime" value="07:30">
+      <select id="sact">
+        <option value="1">Aanzetten</option>
+        <option value="0">Uitzetten</option>
+      </select>
+      <button onclick="addSched()">+ TOEVOEGEN</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>TIJD</th>
+          <th>ACTIE</th>
+          <th>STATUS</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="stbl">
+        <tr><td colspan="4" style="color:var(--muted)">Laden...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function updateClock() {
+      fetch('/status')
+        .then(r => r.json())
+        .then(d => {
+          document.getElementById('clk').textContent = d.time || '--:--:--';
+          document.getElementById('dat').textContent = d.date || '';
+
+          const s = document.getElementById('sync');
+          if (d.synced) {
+            s.textContent  = '\u25CF Tijdssync: gesynchroniseerd';
+            s.className    = 'sync ok';
+          } else {
+            s.textContent  = '\u25CB Tijdssync: wachten...';
+            s.className    = 'sync';
+          }
+
+          renderTable(d.schedules || []);
+        })
+        .catch(() => {});
+    }
+
+    function renderTable(arr) {
+      const tb = document.getElementById('stbl');
+      if (!arr.length) {
+        tb.innerHTML = "<tr><td colspan='4' style='color:var(--muted)'>Geen schema's ingesteld</td></tr>";
+        return;
+      }
+      tb.innerHTML = arr.map((s, i) =>
+        `<tr>
+          <td>${s.time}</td>
+          <td><span class="badge ${s.on ? 'on' : 'off'}">${s.on ? 'AAN' : 'UIT'}</span></td>
+          <td>
+            <button class="toggle ${s.enabled ? 'active' : ''}" onclick="toggleSched(${i})">
+              ${s.enabled ? 'AAN' : 'UIT'}
+            </button>
+          </td>
+          <td><button class="del" onclick="delSched(${i})">&#10005;</button></td>
+        </tr>`
+      ).join('');
+    }
+
+    function startSeq() {
+      const count = document.getElementById('cnt').value;
+      const delay = document.getElementById('dly').value;
+      fetch('/start?count=' + count + '&delay=' + delay);
+    }
+
+    function addSched() {
+      const t = document.getElementById('stime').value;   // "HH:MM" — geen encoding!
+      const a = document.getElementById('sact').value;
+      if (!t) return;
+      fetch('/sched/add?time=' + t + '&on=' + a);
+    }
+
+    function delSched(i)    { fetch('/sched/del?idx='    + i); }
+    function toggleSched(i) { fetch('/sched/toggle?idx=' + i); }
+
+    // Poll elke seconde
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
