@@ -12,6 +12,6 @@
   "clangd.arguments": [
     "--background-index",
     "--query-driver=**",
-    "--compile-commands-dir=c:\\Users\\mateu\\Thomas More\\Toon Dergent - PE\\Software\\sample_project\\build"
+    "--compile-commands-dir=c:\\Users\\mateu\\Thomas More\\Toon Dergent - PE\\Software\\Software\\build"
   ]
 }
