@@ -24,17 +24,16 @@
 #define BUTTON_GPIO  GPIO_NUM_0
 #define TIMEZONE     "CET-1CEST,M3.5.0,M10.5.0/3"  // België / Europa-Centraal
 #define LED_PIN     GPIO_NUM_2
+#define MAX_SCHEDULES 8
+#define WIFI_CONNECTED_BIT BIT0
 
 static const char *TAG = "WIFI";
 static EventGroupHandle_t s_wifi_event_group;
 static esp_netif_t       *s_sta_netif = NULL;
 
-#define WIFI_CONNECTED_BIT BIT0
-
 static bool sequence_running  = false;
 static int  sequence_count    = 5;
 static int  sequence_delay_ms = 2000;
-
 static bool sntp_started   = false;
 static bool server_started = false;
 
@@ -61,8 +60,6 @@ static void url_decode(char *dst, const char *src, size_t maxlen)
     }
     dst[i] = '\0';
 }
-
-#define MAX_SCHEDULES 8
 
 typedef struct {
     bool active;
