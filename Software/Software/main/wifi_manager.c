@@ -17,16 +17,14 @@
 #include "esp_http_client.h"
 #include "driver/gpio.h"
 #include "esp_sntp.h"
+#include "web.h"
 
-#include "web.h"   // embedded index.html
-
-// ─── Config ───────────────────────────────────────────────────────────────────
 #define WIFI_SSID    "Mati201045"
 #define WIFI_PASS    "mati2007"
 #define BUTTON_GPIO  GPIO_NUM_0
 #define TIMEZONE     "CET-1CEST,M3.5.0,M10.5.0/3"  // België / Europa-Centraal
+#define LED_PIN     GPIO_NUM_2
 
-// ─── Globals ──────────────────────────────────────────────────────────────────
 static const char *TAG = "WIFI";
 static EventGroupHandle_t s_wifi_event_group;
 static esp_netif_t       *s_sta_netif = NULL;
@@ -37,11 +35,9 @@ static bool sequence_running  = false;
 static int  sequence_count    = 5;
 static int  sequence_delay_ms = 2000;
 
-// FIX 1: Guards zodat init_sntp() en start_webserver() maar 1x worden aangeroepen
 static bool sntp_started   = false;
 static bool server_started = false;
 
-// ─── URL-decode hulpfunctie (%3A → : enz.) ───────────────────────────────────
 static void url_decode(char *dst, const char *src, size_t maxlen)
 {
     size_t i = 0;
@@ -66,7 +62,6 @@ static void url_decode(char *dst, const char *src, size_t maxlen)
     dst[i] = '\0';
 }
 
-// ─── Scheduler ────────────────────────────────────────────────────────────────
 #define MAX_SCHEDULES 8
 
 typedef struct {
@@ -81,7 +76,6 @@ typedef struct {
 static Schedule schedules[MAX_SCHEDULES] = {0};
 static bool time_synced = false;
 
-// ─── Prototypes ───────────────────────────────────────────────────────────────
 static void wifi_status_task(void *pvParameters);
 static void shelly_sequence_task(void *pvParameters);
 static void scheduler_task(void *pvParameters);
@@ -93,7 +87,6 @@ static void shelly_set(bool on);
 static void start_webserver(void);
 static void init_sntp(void);
 
-// ─── HTTP: hoofdpagina ────────────────────────────────────────────────────────
 static esp_err_t root_handler(httpd_req_t *req)
 {
     size_t len = index_html_end - index_html_start;
@@ -102,7 +95,6 @@ static esp_err_t root_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: directe schakelaar ─────────────────────────────────────────────────
 static esp_err_t on_handler(httpd_req_t *req)
 {
     shelly_set(true);
@@ -117,7 +109,6 @@ static esp_err_t off_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: sequentie ──────────────────────────────────────────────────────────
 static esp_err_t start_handler(httpd_req_t *req)
 {
     char buf[64];
@@ -146,7 +137,6 @@ static esp_err_t stop_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: status JSON ────────────────────────────────────────────────────────
 static esp_err_t status_handler(httpd_req_t *req)
 {
     char resp[1024];
@@ -196,7 +186,6 @@ static esp_err_t status_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: schema toevoegen (/sched/add?time=HH:MM&on=1|0) ───────────────────
 static esp_err_t sched_add_handler(httpd_req_t *req)
 {
     char buf[64];
@@ -247,7 +236,6 @@ static esp_err_t sched_add_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: schema verwijderen (/sched/del?idx=N) ──────────────────────────────
 static esp_err_t sched_del_handler(httpd_req_t *req)
 {
     char buf[32];
@@ -268,7 +256,6 @@ static esp_err_t sched_del_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── HTTP: schema aan/uitzetten (/sched/toggle?idx=N) ────────────────────────
 static esp_err_t sched_toggle_handler(httpd_req_t *req)
 {
     char buf[32];
@@ -290,7 +277,6 @@ static esp_err_t sched_toggle_handler(httpd_req_t *req)
     return ESP_OK;
 }
 
-// ─── Shelly HTTP call ──────────────────────────────────────────────────────────
 static void shelly_set(bool on)
 {
     char url[128];
@@ -311,7 +297,6 @@ static void shelly_set(bool on)
     esp_http_client_cleanup(client);
 }
 
-// ─── Webserver ─────────────────────────────────────────────────────────────────
 static void start_webserver(void)
 {
     httpd_config_t config = HTTPD_DEFAULT_CONFIG();
@@ -338,8 +323,6 @@ static void start_webserver(void)
     ESP_LOGI("WEB", "Webserver gestart");
 }
 
-// ─── SNTP ──────────────────────────────────────────────────────────────────────
-// FIX 4: Log de gesynchroniseerde tijd in de callback
 static void sntp_sync_cb(struct timeval *tv)
 {
     time_synced = true;
@@ -365,7 +348,6 @@ static void init_sntp(void)
 
     ESP_LOGI("SNTP", "SNTP gestart, wachten op sync...");
 
-    // FIX 4: Wacht max 10s op eerste sync bij opstart
     int retry = 0;
     while (!time_synced && retry++ < 20)
         vTaskDelay(pdMS_TO_TICKS(500));
@@ -376,7 +358,6 @@ static void init_sntp(void)
         ESP_LOGW("SNTP", "Tijdssync nog bezig op achtergrond...");
 }
 
-// ─── Tasks ─────────────────────────────────────────────────────────────────────
 static void wifi_status_task(void *pvParameters)
 {
     while (1)
@@ -462,12 +443,10 @@ static void scheduler_task(void *pvParameters)
             }
         }
 
-        // FIX 3: 10s interval zodat schema's niet gemist worden
         vTaskDelay(pdMS_TO_TICKS(10000));
     }
 }
 
-// ─── WiFi event handler ────────────────────────────────────────────────────────
 static void event_handler(void *arg, esp_event_base_t event_base,
                            int32_t event_id, void *event_data)
 {
@@ -495,7 +474,6 @@ static void event_handler(void *arg, esp_event_base_t event_base,
     }
 }
 
-// ─── WiFi init ─────────────────────────────────────────────────────────────────
 static void wifi_init_sta(void)
 {
     s_wifi_event_group = xEventGroupCreate();
@@ -538,7 +516,6 @@ static void wifi_init_sta(void)
     ESP_LOGI(TAG, "wifi_init_sta klaar");
 }
 
-// ─── Button task ───────────────────────────────────────────────────────────────
 static void button_task(void *pvParameters)
 {
     int last_state = 1;
@@ -557,7 +534,6 @@ static void button_task(void *pvParameters)
     }
 }
 
-// ─── app_main ──────────────────────────────────────────────────────────────────
 void app_main(void)
 {
     esp_err_t ret = nvs_flash_init();
@@ -587,4 +563,16 @@ void app_main(void)
     gpio_config(&io_conf);
 
     xTaskCreate(button_task, "button_task", 2048, NULL, 5, NULL);
+
+    gpio_reset_pin(LED_PIN);
+    gpio_set_direction(LED_PIN, GPIO_MODE_OUTPUT);
+    gpio_set_level(LED_PIN, 0);
+
+    while (1) {
+        int delay = xEventGroupGetBits(s_wifi_event_group) & WIFI_CONNECTED_BIT ? 1000 : 200;
+        gpio_set_level(LED_PIN, 1);
+        vTaskDelay(pdMS_TO_TICKS(delay));
+        gpio_set_level(LED_PIN, 0);
+        vTaskDelay(pdMS_TO_TICKS(delay));
+    }
 }

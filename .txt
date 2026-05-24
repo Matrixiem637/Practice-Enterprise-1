@@ -1,7 +1,0 @@
-12/02-16/02 	-Bespreken project onderwerp
-
-17/02 		-Afwerking projectonderwerp
-
-18/02		-Voorstellen project
-
-18/02-.....	-Pcb schema maken, Pcb maken in Altium, Componenten oplijsten
